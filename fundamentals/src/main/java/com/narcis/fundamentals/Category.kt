@@ -14,7 +14,17 @@ fun main() {
     val g: Fun<Int, String> = ::format
     val formatTwice = g after f
     println(formatTwice(37))
+
+    // associativity
+    val h: Fun<String, Int> = ::length
+    val leftSide = (h after g) after f
+    val rightSide = h after (g after f)
+
+    println(leftSide(37) == rightSide(37))
+
 }
 
 fun twice(a: Int): Int = a*2
 fun format(b: Int): String = "Result is $b"
+
+fun length(s: String): Int = s.length
