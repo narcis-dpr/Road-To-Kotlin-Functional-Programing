@@ -16,12 +16,14 @@ fun main() {
     println(formatTwice(37))
 
     // associativity
+    /**
+     * ho(gof) = (hog)of
+     */
     val h: Fun<String, Int> = ::length
     val leftSide = (h after g) after f
     val rightSide = h after (g after f)
 
     println(leftSide(37) == rightSide(37))
-
 }
 
 fun twice(a: Int): Int = a*2
