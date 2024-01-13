@@ -1,5 +1,11 @@
 package com.narcis.fundamentals
 
+fun <A> identity(value: A) = value
+/**
+ * this code represents identity
+ */
+
+
 inline infix fun <A, B, C> Fun<B, C>.after(crossinline f: Fun<A, B>) :
         Fun<A, C> = {a: A ->
             this(f(a))
@@ -24,9 +30,16 @@ fun main() {
     val rightSide = h after (g after f)
 
     println(leftSide(37) == rightSide(37))
+
+    /**
+     * identity
+     */
+
 }
 
 fun twice(a: Int): Int = a*2
 fun format(b: Int): String = "Result is $b"
 
 fun length(s: String): Int = s.length
+
+fun half(a: Int): Int = a/2
