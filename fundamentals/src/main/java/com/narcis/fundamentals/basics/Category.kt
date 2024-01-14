@@ -1,4 +1,4 @@
-package com.narcis.fundamentals
+package com.narcis.fundamentals.basics
 
 fun <A> identity(value: A) = value
 /**

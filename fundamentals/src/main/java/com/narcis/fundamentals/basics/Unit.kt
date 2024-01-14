@@ -1,4 +1,4 @@
-package com.narcis.fundamentals
+package com.narcis.fundamentals.basics
 
 /**
  * a terminal object is a type output of a unique function accepting an input

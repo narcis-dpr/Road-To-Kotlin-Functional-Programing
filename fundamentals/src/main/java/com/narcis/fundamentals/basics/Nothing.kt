@@ -1,4 +1,4 @@
-package com.narcis.fundamentals
+package com.narcis.fundamentals.basics
 
 /**
  * Nothing is the initial object that any function being called with is has the same result
