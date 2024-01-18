@@ -24,9 +24,8 @@ fun negate(x: Int) = -x
 fun identity(x: Int) = x
 fun abs(x: Int) = if (x<0) negate(x) else identity(x) // compose from other pure functions
 // not pure :
-fun countedAbs(x: Int): Int{
-    count2++
-    return abs(x)
+fun countedAbs(countIn: Int,x: Int): Pair<Int, Int>{
+    return abs(x) to countIn+1
 }
 fun main() {
     var f: Fun<Int, Int> = ::twice

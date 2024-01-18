@@ -10,18 +10,22 @@ import org.junit.Test
 class PureKtTest {
     @Test
     fun test100Times() {
+        var c = 0
         100.invokeTimes() {
-            countedAbs(it)
+            val (count, _) = countedAbs(c, it)
+            c = count
         }
-        assertEquals(count2, 100)
+        assertEquals(c, 100)
     }
 
     @Test
     fun test50Times() {
+        var c = 0
         50.invokeTimes() {
-            countedAbs(it)
+            val (count, _) = countedAbs(c, it)
+            c = count
         }
-        assertEquals(count2, 50)
+        assertEquals(c, 50)
     }
 }
 
