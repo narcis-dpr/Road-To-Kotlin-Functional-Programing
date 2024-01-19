@@ -33,4 +33,12 @@ fun main() {
         a3 == a3Eval && a4 == a4Eval
     }
     // yes
+    //impure function with referential transparency:
+    val expr4 = { println("Hello Wrold!") }
+    val (c1, c2) = expr4() to expr4()
+    val expr4Eval = expr4()
+    val (c1Eval, c2Eval) = expr4Eval to expr4Eval
+    assertOrThrow("expr2 is not RT") {
+        c1 == c1Eval && c2 == c2Eval
+    }
 }
