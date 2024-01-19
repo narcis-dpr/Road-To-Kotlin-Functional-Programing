@@ -1,6 +1,7 @@
 package com.narcis.fundamentals.concepts
 
 import com.narcis.fundamentals.basics.Fun
+import com.narcis.fundamentals.basics.after
 import kotlin.random.Random
 
 fun twice(x: Int): Int = x*2 //pure
@@ -27,6 +28,9 @@ fun abs(x: Int) = if (x<0) negate(x) else identity(x) // compose from other pure
 fun countedAbs(countIn: Int,x: Int): Pair<Int, Int>{
     return abs(x) to countIn+1
 }
+var sharedCount = 1
+fun comp1(x: Int): String = "Hello ${x + sharedCount}" // impure
+fun comp2(x: String): Int = x.length - sharedCount  // impure
 fun main() {
     var f: Fun<Int, Int> = ::twice
     println("Executing twice(10)")
@@ -34,4 +38,6 @@ fun main() {
     f = ::twiceAndLog
     println("Executing twiceAndLog(10")
     f(10)
+
+    val comp2AfterComp1 = ::comp2 after ::comp1
 }

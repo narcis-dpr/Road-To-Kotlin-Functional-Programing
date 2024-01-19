@@ -2,9 +2,6 @@ package com.narcis.fundamentals.concepts
 
 import com.narcis.fundamentals.utiles.invokeTimes
 import org.junit.Assert.*
-import org.hamcrest.CoreMatchers.*
-import org.hamcrest.MatcherAssert.assertThat
-import org.junit.Before
 import org.junit.Test
 
 class PureKtTest {
