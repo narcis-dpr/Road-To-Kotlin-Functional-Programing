@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "kotlin functional programing"
 include(":app")
 include(":fundamentals")
+include(":ExpressionEvaluationLaziness")
