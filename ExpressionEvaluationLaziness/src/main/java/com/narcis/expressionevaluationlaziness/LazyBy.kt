@@ -24,7 +24,15 @@ var variable by object { // delegate to an object with getter and setter operato
     variable = 10
     println("reading $variable")
 }
-
+fun multiLazy() {
+    val multiLambda by lazy { println("Im multiLambda") } // the lambda expression you pass as a parameter to lazy is evaluated just once and
+    // its result is reused when accessed again, this is a way of achieving memoization
+    multiLambda
+    multiLambda
+    multiLambda
+    multiLambda
+    multiLambda
+}
 
 fun main() {
     testDelegate()
@@ -36,5 +44,21 @@ fun main() {
         println("ok")
     } else {
         println("ko")
+    }
+    multiLazy()
+
+    val myLazy = myLazy { println("Im very lazy!"); 10 } // evaluated once and printed 3 times
+    repeat(3) {
+        println(myLazy)
+    }
+}
+
+fun <A: Any> myLazy(fn: () -> A): () -> A {
+    var result: A? = null
+    return { // 2 (result == null
+        if (result == null) {
+            result = fn()
+        }
+        result!! // 5 }
     }
 }
