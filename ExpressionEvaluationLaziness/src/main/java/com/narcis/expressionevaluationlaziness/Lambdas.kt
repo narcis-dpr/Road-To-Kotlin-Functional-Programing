@@ -26,4 +26,10 @@ val helloThereLambda = {name: String -> "Hello $name"} // (String) -> String
 
 val nothingLambda = { TODO("Do exercise more!") }  // () -> Nothing
 
+fun main() {
+    // different kind of invoking lambda :
+    val result = operation(3, 4)
+    val result1 = operation.invoke(3,4)
+}
+
 
