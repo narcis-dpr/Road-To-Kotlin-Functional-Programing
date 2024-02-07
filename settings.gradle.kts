@@ -17,3 +17,4 @@ rootProject.name = "kotlin functional programing"
 include(":app")
 include(":fundamentals")
 include(":ExpressionEvaluationLaziness")
+include(":Higher Order Function")
