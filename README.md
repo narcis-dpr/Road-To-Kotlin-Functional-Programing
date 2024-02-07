@@ -5,4 +5,8 @@ alot of people use kotlin instead of java regardless of its true powers. one of 
 ## Fundamental module :
 ### concepts of category theory and how they relate to functional programming
 ### basic concepts of functional: 
-pure and impure, Nothing and Unit, Inline, lazy and lambda, 
+pure and impure, Nothing and Unit, Inline
+
+## Expression Evaluation :
+
+lazy and lambda, 
