@@ -29,6 +29,13 @@ fun main() {
         first > second
     }
     array.printAll()
+
+    // create an implementation instance of the functional interface:
+    val largerStrategy = IsLarger<Int> {first, second ->
+        first > second
+    }
+    bubbleSortFI(array, largerStrategy)
+    array.printAll()
 }
 
 fun <T> Array<out T>.printAll() {
