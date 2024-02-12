@@ -27,6 +27,12 @@ fun main() {
     val array = intArrayOf(10, 5, 2, 7, 8, 3)
     bubbleSortNoneGeneric(array)
     array.printAll()
+    val genArray = arrayOf(10, 5, 2, 7, 8, 3)
+    bubbleSort(genArray) {first, second ->
+        first > second
+    }
+
+    array.printAll()
 }
 
 
