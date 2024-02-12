@@ -10,7 +10,15 @@ fun declarative(emails: List<String>): List<String> =
         .filter { it.length > 10 }
         .take(5)
 
+// readability :
+fun isEmailValid(email: String) = EMAIL_REG_EX.matches(email) // pure fun
 
+fun isEmailLongEnough(email: String) = email.length > 10
+
+fun moreDeclarative(emails: List<String>): List<String> =
+    emails.filter(::isEmailValid) // use isEmailValid reference as parameter
+        .filter(::isEmailLongEnough) //use isEmailLongEnough reference as parameter
+        .take(5)
 fun main() {
     println(declarative(emails))
 }
