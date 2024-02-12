@@ -6,7 +6,7 @@ fun <T> SinglePredicate<T>.whoAmI() = println("Im a typealias")
 
 
 fun interface ISinglePredicate<T> {
-    fun accept(value: T): Boolean
+    fun accept(value: T): Boolean // single abstract method (SAM)
 
     fun other() {
         println(" I can have other methods")
