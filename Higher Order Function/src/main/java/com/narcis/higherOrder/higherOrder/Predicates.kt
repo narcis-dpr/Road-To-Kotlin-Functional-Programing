@@ -1,5 +1,8 @@
 package com.narcis.higherOrder.higherOrder
 
+import com.narcis.higherOrder.imperativeVsDeclarative.EMAIL_REG_EX
+import com.narcis.higherOrder.imperativeVsDeclarative.emails
+
 fun interface Predicate1<T> {
     fun accept(value: T): Boolean
 }
@@ -25,4 +28,17 @@ fun main() {
     listOf(1,2,3,4,4,5,6,7,8,8)
         .filterWithPredicate(predicate)
         .forEach(::println)
+
+
+    emails.filterWithPredicate(isValidEmail and isLongerThan(10))
+        .take(5)
+        .forEach(::println)
 }
+
+// exercis 5.5 :
+
+val isValidEmail: Predicate1<String> =
+    Predicate1 {value -> EMAIL_REG_EX.matches(value) }
+
+fun isLongerThan(length: Int): Predicate1<String> =
+    Predicate1 { value -> value.length > length }
