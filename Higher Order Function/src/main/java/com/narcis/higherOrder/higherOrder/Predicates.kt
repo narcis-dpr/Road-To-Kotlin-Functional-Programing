@@ -35,7 +35,7 @@ fun main() {
         .forEach(::println)
 }
 
-// exercis 5.5 :
+// exercise 5.5 :
 
 val isValidEmail: Predicate1<String> =
     Predicate1 {value -> EMAIL_REG_EX.matches(value) }
