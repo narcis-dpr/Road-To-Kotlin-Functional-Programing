@@ -24,6 +24,11 @@ data class WrongImmutableUserWithDefensiveCopy(
         }
 }
 
+data class MutableUser(
+    val id: Int,
+    var username: String  // one var in enough for make this class mutable
+)
+
 fun main() {
     val w = WrongImmutableUser(1, "maxcarli")
     println(w)
@@ -34,4 +39,9 @@ fun main() {
     println(w1)
     w1.dob.time = 1000L // access dob and changing it but it wont change because its a copy
     println(w1)
+    /// mutable class :
+    val mutableUser = MutableUser(8, "maxcarli")
+    println(mutableUser)
+    mutableUser.username = "massimo"
+    println(mutableUser)
 }
