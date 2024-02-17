@@ -18,9 +18,9 @@ data class WrongImmutableUserWithDefensiveCopy(
     val username: String,
     val _dob: Date = Date()
 ) {
-    val dob: Date
+    val dob: Date  // read-only property
         get() = Date().apply {
-            time = _dob.time
+            time = _dob.time // create a copy of _dob every time the same property is accessed
         }
 }
 
@@ -29,4 +29,9 @@ fun main() {
     println(w)
     w.dob.time = 1000L // access dob and changing it
     println(w)
+
+    val w1 = WrongImmutableUserWithDefensiveCopy(1, "maxcarli")
+    println(w1)
+    w1.dob.time = 1000L // access dob and changing it but it wont change because its a copy
+    println(w1)
 }
