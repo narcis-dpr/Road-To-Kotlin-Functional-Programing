@@ -13,6 +13,17 @@ data class WrongImmutableUser(
     val dob: java.util.Date = Date() // because of this the class isn't fully immutable
 )
 
+data class WrongImmutableUserWithDefensiveCopy(
+    val id: Int,
+    val username: String,
+    val _dob: Date = Date()
+) {
+    val dob: Date
+        get() = Date().apply {
+            time = _dob.time
+        }
+}
+
 fun main() {
     val w = WrongImmutableUser(1, "maxcarli")
     println(w)
