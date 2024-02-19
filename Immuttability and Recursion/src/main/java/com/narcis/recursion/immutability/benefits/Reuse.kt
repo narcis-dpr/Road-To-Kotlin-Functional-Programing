@@ -1,4 +1,4 @@
-package com.narcis.recursion.immutability
+package com.narcis.recursion.immutability.benefits
 
 data class Key(
     val id: Int
