@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ExpressionEvaluationLaziness" />
+            <option value="$PROJECT_DIR$/Functional Data Structure" />
             <option value="$PROJECT_DIR$/Higher Order Function" />
             <option value="$PROJECT_DIR$/Immuttability and Recursion" />
             <option value="$PROJECT_DIR$/app" />
