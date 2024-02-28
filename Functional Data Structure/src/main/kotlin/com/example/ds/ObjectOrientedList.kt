@@ -1,4 +1,4 @@
-package com.example.db
+package com.example.ds
 
 data class Node<T>(
     val value: T,
