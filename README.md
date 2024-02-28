@@ -9,4 +9,12 @@ pure and impure, Nothing and Unit, Inline
 
 ## Expression Evaluation :
 
-lazy and lambda, 
+lazy and lambda, memoization, stream, eager and lazy evaluation, inifinty with lazy, normal order and applicative order
+
+## Immutability and Recursion :
+
+immutablilty in collections, constance, reusablilty and safety, cost of immutablilty, critical section
+
+## Functional data structure :
+
+creating list and builder for list, 
