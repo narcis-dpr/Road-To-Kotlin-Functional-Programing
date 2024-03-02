@@ -24,7 +24,7 @@ fun sum(a: Int): (Int) -> Int = { b: Int -> a + b }
 // make curry generic :
 typealias Fun2<A, B, C> = (A, B) -> C // type of a function that gets 2 var and returns one
 
-fun <A, B, C> Fun2<A, B, C>.curry(): (A) -> (B) -> C = { a: A ->
+fun <A, B, C> Fun2<A, B, C>.curry(): (A) -> (B) -> C = { a: A -> // the type of curry is (Int) -> (Int) -> Int
 
     { b: B ->
         this(a, b)
