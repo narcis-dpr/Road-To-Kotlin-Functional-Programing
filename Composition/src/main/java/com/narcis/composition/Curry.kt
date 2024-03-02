@@ -10,12 +10,25 @@ fun main() {
     // a practice of currying :
     val addThree = sum(3)
     val result = addThree(4)
-    println(result)
 
     val curriedSum = sum.curry()
     val addThree2 = curriedSum(3)
+    println(result)
     val result2 = addThree2(4)
     println(result2)
+
+    /// more complete composition :
+    fun comp(a: Int, b: Int): String {
+        val currySum: (Int) -> (Int) -> Int = sum.curry()
+        val doubleComposeSum = double compose currySum
+        val right: (Int) -> Int = doubleComposeSum(a)
+        return (square compose right compose stringify)(b)
+    }
+
+    fun comp1(a: Int, b: Int): String {
+        val right = (double compose sum.curry())(a)
+        return (square compose right compose stringify)(b)
+    }
 
 }
 
