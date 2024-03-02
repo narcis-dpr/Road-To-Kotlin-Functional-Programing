@@ -30,6 +30,7 @@ fun main() {
         return (square compose right compose stringify)(b)
     }
 
+    println(comp1(10, 2))
 }
 
 fun sum(a: Int): (Int) -> Int = { b: Int -> a + b }
