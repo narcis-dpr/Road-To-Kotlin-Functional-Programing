@@ -15,7 +15,7 @@ fun main() {
     val square = {a: Int -> a * a } // a pure function
     val stringify = Int::toString
     val stringifyDoubleSquareAfter = stringify after square after double // use after as a composition of double, square and toString
-    val stringifyDoubleSquareCompose = double compose stringify
+    val stringifyDoubleSquareCompose = double compose square compose stringify
 
     println(stringifyDoubleSquareAfter(2))
     println(stringifyDoubleSquareCompose(2))
