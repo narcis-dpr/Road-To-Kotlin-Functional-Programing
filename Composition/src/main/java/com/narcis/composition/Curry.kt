@@ -18,12 +18,14 @@ fun main() {
     println(result2)
 
     /// more complete composition :
-    fun comp(a: Int, b: Int): String {
-        val currySum: (Int) -> (Int) -> Int = sum.curry()
-        val doubleComposeSum = double compose currySum
-        val right: (Int) -> Int = doubleComposeSum(a)
-        return (square compose right compose stringify)(b)
-    }
+//    fun comp(a: Int, b: Int): String {
+//        val currySum: (Int) -> (Int) -> Int = sum.curry()
+//        val doubleComposeSum = double compose currySum
+//        val right: (Int) -> Int = doubleComposeSum(a)
+//        return (square compose right compose stringify)(b)
+//    }
+   // refactor above comp with pipe :
+    fun comp(a: Int, b: Int): String = b pipe (square compose (a pipe (double compose sum.curry() )) compose stringify)
 
     fun comp1(a: Int, b: Int): String {
         val right = (double compose sum.curry())(a)
@@ -44,3 +46,6 @@ fun <A, B, C> Fun2<A, B, C>.curry(): (A) -> (B) -> C = { a: A -> // the type of 
         this(a, b)
     }
 }
+
+// inorder to remove parentheses :
+infix fun <A, B> A.pipe(f: Fun<A, B>): B = f(this)
