@@ -11,6 +11,9 @@ fun main() {
     functionWithEffect(5) pipe ::println
     functionWithEffect(5) pipe ::println
     functionWithEffect(5) pipe ::println
+
+    listOf(1, 2, 3)
+        .map (::pureFunction) pipe ::println
 }
 // adding side effect :
 fun functionWithEffect(x: Int): Int { // returns the same result as pure function but with side effect
