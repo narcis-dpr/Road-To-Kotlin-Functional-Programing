@@ -33,3 +33,11 @@ fun functionWithEffect(x: Int): Int { // returns the same result as pure functio
     println("Result: $result")
     return result
 }
+
+
+// this function is a pure function that dosnt print anything but it delates the responsibility
+// of handling the side effect to the caller
+fun functionWithWriter(x: Int): Pair<Int, String> {
+    val result = x * x - 1
+    return result to "Result: $result"
+}
