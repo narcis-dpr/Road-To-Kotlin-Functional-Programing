@@ -1,5 +1,6 @@
 package com.narcis.composition
 
+
 fun pureFunction(x: Int) = x * x - 1 // referentially transparent expression
 
 fun main() {
@@ -40,4 +41,14 @@ fun functionWithEffect(x: Int): Int { // returns the same result as pure functio
 fun functionWithWriter(x: Int): Pair<Int, String> {
     val result = x * x - 1
     return result to "Result: $result"
+}
+
+typealias Writer<A, B> = (A) -> Pair<B, String>
+infix fun <A, B, C> Writer<A, B>.compose (
+g: Writer<B, C>
+): Writer<A, C> = {a: A ->
+    val (b, str) = this(a)
+    val (c, str2) = g(b)
+
+    c to "$str\n$str2\n"
 }
