@@ -26,6 +26,15 @@ fun main() {
 
     // this two are not equal (because of side effect) this means functions with side effect dont compose! :
     listOf(1, 2, 3).map(::functionWithEffect).map(::functionWithEffect) pipe ::println
+
+    val compFunWithWriter = ::functionWithWriter compose ::functionWithWriter
+
+    // compose more with writer :
+    val square = { a: Int -> a * a }
+    val double = { a: Int -> a * 2 }
+    val squareFunAndWrite = square compose ::functionWithEffect
+    val compFunAndWrite = double compose ::functionWithEffect
+    
 }
 
 // adding side effect :
@@ -43,10 +52,12 @@ fun functionWithWriter(x: Int): Pair<Int, String> {
     return result to "Result: $result"
 }
 
+// be able to compose writer as a pure function without side effect
 typealias Writer<A, B> = (A) -> Pair<B, String>
-infix fun <A, B, C> Writer<A, B>.compose (
-g: Writer<B, C>
-): Writer<A, C> = {a: A ->
+
+infix fun <A, B, C> Writer<A, B>.compose(
+    g: Writer<B, C>
+): Writer<A, C> = { a: A ->
     val (b, str) = this(a)
     val (c, str2) = g(b)
 
