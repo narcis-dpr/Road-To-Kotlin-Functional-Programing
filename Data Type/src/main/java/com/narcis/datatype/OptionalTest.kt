@@ -20,4 +20,7 @@ fun main() {
         }
         is None -> println("Error!")
     }
+
+    // test error :
+    val resE = strToInt("100aaa")
 }
