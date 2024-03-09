@@ -52,4 +52,8 @@ fun main() {
     list.declarativeFold(1) {acc, item ->
         acc * item
     } pipe ::println
+
+    // use the existing fold :
+    list.fold(0) {acc, item -> acc + item } pipe ::println
+    list.fold(1) {acc, item -> acc * item } pipe ::println
 }
