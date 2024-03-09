@@ -39,6 +39,19 @@ fun <T, S> List<T>.declarativeFold(
     }
     return helper(0, start)
 }
+
+fun <T, S> List<T>.declarativeFoldRight(
+start: S,
+combineFunc: (T, S) -> S
+): S {
+    fun helper(pos: Int): S {
+        if (pos == size) {
+            return start
+        }
+        return combineFunc(this[pos], helper(pos + 1))
+    }
+    return helper(0)
+}
 fun main() {
     val list = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     list.imperativeSum() pipe ::println
@@ -56,4 +69,9 @@ fun main() {
     // use the existing fold :
     list.fold(0) {acc, item -> acc + item } pipe ::println
     list.fold(1) {acc, item -> acc * item } pipe ::println
-}
+
+    // fold right :
+    list.foldRight(0) {item, acc -> acc + item} pipe ::println
+    list.foldRight(1) {item, acc -> acc * item} pipe ::println
+
+ }
