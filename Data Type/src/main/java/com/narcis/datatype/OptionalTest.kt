@@ -10,6 +10,7 @@ fun strToInt(value: String): Optional<Int> = // since this operation can fail, t
     }
 
 fun double(value: Int): Int = value * 2
+infix fun <A, B> A.pipe(f: Fun<A, B>): B = f(this)
 
 fun main() {
     val res = strToInt("10")
@@ -23,4 +24,11 @@ fun main() {
 
     // test error :
     val resE = strToInt("100aaa")
+
+    Optional
+        .lift("10aa")
+        .flatMap(::strToInt)
+        .map(::double)
+        .getOrDefault(-1)
+        .pipe(::println)
 }
