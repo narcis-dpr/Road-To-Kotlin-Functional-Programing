@@ -31,6 +31,12 @@ fun <A, B, D> Either<A, B>.rightMap(
 }
 
 // accessors :
+fun <A, B> Either<A, B>.getOrDefault(
+    defaultValue: B
+): B = when(this) {
+    is Left -> defaultValue
+    is Right -> right
+}
 fun <A, B> Either<A, B>.getRightOrDefault(
     defaultValue: B
 ): B = when(this) {
@@ -41,8 +47,8 @@ fun <A, B> Either<A, B>.getRightOrDefault(
 fun <A, B> Either<A, B>.getLeftOrDefault(
     defaultValue: A
 ): A = when(this) {
-    is Left -> left
-    is Right -> defaultValue
+    is Left<A> -> left
+    is Right<B> -> defaultValue
 }
 
 fun <A, B> Either<A, B>.flip(): Either<B, A> = when(this) {
