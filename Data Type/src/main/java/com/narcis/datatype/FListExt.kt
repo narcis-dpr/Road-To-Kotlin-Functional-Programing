@@ -12,31 +12,42 @@ tailrec fun <T, S> FList<T>.fold(
         tail.fold(combineFunc(start, head), combineFunc)
     }
 }
+
 fun <T, S> FList<T>.foldRight(
     start: S,
     combineFunc: (T, S) -> S
-): S = when(this) {
+): S = when (this) {
     is Nil -> start
     is FCons<T> -> {
         combineFunc(head, tail.foldRight(start, combineFunc))
     }
 }
 
-fun <T> FList<T>.append(rhs: FList<T>): FList<T> =
-    foldRight(rhs, {item, acc -> FCons(item, acc) })
-
 fun <T, S> FList<T>.map(fn: Fun<T, S>): FList<S> =
-    when(this) {
+    when (this) {
         is Nil -> FList.empty()
         is FCons<T> -> FCons(fn(head), tail.map(fn))
     }
+
+fun <T> FList<T>.append(rhs: FList<T>): FList<T> =
+    foldRight(rhs, { item, acc -> FCons(item, acc) })
+
+fun <T, S> FList<T>.flatMap(
+    fn: Fun<T, FList<S>>
+): FList<S> = foldRight(FList.empty()) { item, acc ->
+    fn(item).append(acc)
+}
+
+fun countUpToFList(value: Int) =
+    FList.of(*Array(value) { it }) // use spread * to pass in an array for varags
+
 fun main() {
     val numbers = FList.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-    numbers.fold(0) {acc, item -> acc + item} pipe ::println
-    numbers.fold(1) {acc, item -> acc * item} pipe ::println
+    numbers.fold(0) { acc, item -> acc + item } pipe ::println
+    numbers.fold(1) { acc, item -> acc * item } pipe ::println
 
     FList.of(*("supercalifragilisticexpialidocious".toCharArray().toTypedArray()))
-        .foldRight(StringBuilder()) {item, acc ->
+        .foldRight(StringBuilder()) { item, acc ->
             acc.append(item)
             acc
         } pipe ::println
@@ -48,7 +59,9 @@ fun main() {
     val first = FList.of(1, 2, 3)
     val second = FList.of(4, 5, 6)
 
-    first.append(second).forEach( ::println)
+    first.append(second).forEach(::println)
 
+    val intList = FList.of(1, 2, 3)
+    intList.flatMap(::countUpToFList).forEach(::println)
 
 }
