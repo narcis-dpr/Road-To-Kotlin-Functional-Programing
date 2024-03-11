@@ -29,3 +29,23 @@ fun <A, B, D> Either<A, B>.rightMap(
     is Right<B> -> Either.right(fr(right))
     is Left<A> -> this
 }
+
+// accessors :
+fun <A, B> Either<A, B>.getRightOrDefault(
+    defaultValue: B
+): B = when(this) {
+    is Left -> defaultValue
+    is Right -> right
+}
+
+fun <A, B> Either<A, B>.getLeftOrDefault(
+    defaultValue: A
+): A = when(this) {
+    is Left -> left
+    is Right -> defaultValue
+}
+
+fun <A, B> Either<A, B>.flip(): Either<B, A> = when(this) {
+    is Left<A> -> Either.right(left)
+    is Right<B> -> Either.left(right)
+}
