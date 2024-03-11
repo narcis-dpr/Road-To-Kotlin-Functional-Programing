@@ -22,6 +22,9 @@ fun <T, S> FList<T>.foldRight(
     }
 }
 
+fun <T> FList<T>.append(rhs: FList<T>): FList<T> =
+    foldRight(rhs, {item, acc -> FCons(item, acc) })
+
 fun <T, S> FList<T>.map(fn: Fun<T, S>): FList<S> =
     when(this) {
         is Nil -> FList.empty()
@@ -41,5 +44,11 @@ fun main() {
     FList.of(1, 2, 3, 4, 5)
         .map(::double)
         .forEach(::println)
+
+    val first = FList.of(1, 2, 3)
+    val second = FList.of(4, 5, 6)
+
+    first.append(second).forEach( ::println)
+
 
 }
