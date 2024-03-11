@@ -22,4 +22,5 @@ fun main() {
     strToIntEither("10").rightMap(squareValue).getOrDefault(-1).pipe(::println)
     strToIntEither("10aaa").leftMap(formatError).getOrDefault("Generic Error").pipe(::println)
 
+    strToIntEither("10").rightMap(squareValue).rightMap(Int::toString).flatMap(::strToIntEither).getOrDefault(-1).pipe(::println)
 }

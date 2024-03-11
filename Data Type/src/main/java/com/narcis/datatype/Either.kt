@@ -55,3 +55,14 @@ fun <A, B> Either<A, B>.flip(): Either<B, A> = when(this) {
     is Left<A> -> Either.right(left)
     is Right<B> -> Either.left(right)
 }
+
+fun <A, B, D> Either<A,B>.flatMap(fn: (B) -> Either<A, D>): Either<A,D> = when(this) {
+    is Left<A> -> Either.left(left)
+    is Right -> {
+        val result = fn(right)
+        when(result) {
+            is Left<A> -> Either.left(result.left)
+            is Right<D> -> Either.right(result.right)
+        }
+    }
+}
