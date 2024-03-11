@@ -1,5 +1,7 @@
 package com.narcis.datatype
 
+import java.lang.StringBuilder
+
 
 tailrec fun <T, S> FList<T>.fold(
     start: S,
@@ -10,9 +12,25 @@ tailrec fun <T, S> FList<T>.fold(
         tail.fold(combineFunc(start, head), combineFunc)
     }
 }
+fun <T, S> FList<T>.foldRight(
+    start: S,
+    combineFunc: (T, S) -> S
+): S = when(this) {
+    is Nil -> start
+    is FCons<T> -> {
+        combineFunc(head, tail.foldRight(start, combineFunc))
+    }
+}
 
 fun main() {
     val numbers = FList.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     numbers.fold(0) {acc, item -> acc + item} pipe ::println
     numbers.fold(1) {acc, item -> acc * item} pipe ::println
+
+    FList.of(*("supercalifragilisticexpialidocious".toCharArray().toTypedArray()))
+        .foldRight(StringBuilder()) {item, acc ->
+            acc.append(item)
+            acc
+        } pipe ::println
+
 }
