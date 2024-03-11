@@ -22,6 +22,11 @@ fun <T, S> FList<T>.foldRight(
     }
 }
 
+fun <T, S> FList<T>.map(fn: Fun<T, S>): FList<S> =
+    when(this) {
+        is Nil -> FList.empty()
+        is FCons<T> -> FCons(fn(head), tail.map(fn))
+    }
 fun main() {
     val numbers = FList.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
     numbers.fold(0) {acc, item -> acc + item} pipe ::println
@@ -32,5 +37,9 @@ fun main() {
             acc.append(item)
             acc
         } pipe ::println
+
+    FList.of(1, 2, 3, 4, 5)
+        .map(::double)
+        .forEach(::println)
 
 }
