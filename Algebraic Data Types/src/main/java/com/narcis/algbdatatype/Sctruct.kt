@@ -20,4 +20,5 @@ fun booleanToInt(even: Boolean): Int = if (even) 1 else 0
 
 val isEvenInt = ::isEven compose ::booleanToInt
 
+typealias NothingTriage = Pair<Nothing, Triage>
 
