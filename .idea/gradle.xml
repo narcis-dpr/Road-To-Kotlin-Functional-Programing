@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Algebraic Data Types" />
             <option value="$PROJECT_DIR$/Composition" />
             <option value="$PROJECT_DIR$/Data Type" />
             <option value="$PROJECT_DIR$/ExpressionEvaluationLaziness" />
