@@ -20,6 +20,16 @@ val eitherTriage3: Either<Boolean, Triage> = Right(Triage.RED)
 val eitherTriage4: Either<Boolean, Triage> = Right(Triage.YELLOW)
 val eitherTriage5: Either<Boolean, Triage> = Right(Triage.GREEN)
 
+typealias EitherBooleanOrNothing = Either<Boolean, Nothing>
+
+val boolNothing1: Either<Boolean, Nothing> = Left(true)
+val boolNothing2: Either<Boolean, Nothing> = Left(false)
+
+typealias EitherBooleanOrUnit = Either<Boolean, Unit>
+
+val boolUnit1: Either<Boolean, Unit> = Left(true)
+val boolUnit2: Either<Boolean, Unit> = Left(false)
+val boolUnit3: Either<Boolean, Unit> = Right(Unit)
 fun main() {
 
 }
