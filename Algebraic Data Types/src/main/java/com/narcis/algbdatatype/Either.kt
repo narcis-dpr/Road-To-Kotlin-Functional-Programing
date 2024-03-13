@@ -30,6 +30,7 @@ typealias EitherBooleanOrUnit = Either<Boolean, Unit>
 val boolUnit1: Either<Boolean, Unit> = Left(true)
 val boolUnit2: Either<Boolean, Unit> = Left(false)
 val boolUnit3: Either<Boolean, Unit> = Right(Unit)
+
 fun main() {
 
 }
