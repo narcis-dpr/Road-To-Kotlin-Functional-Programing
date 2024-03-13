@@ -13,3 +13,8 @@ fun runAsync(callback: Callback<Response, Info, ErrorInfo>) {
     // in case of error :
     callback(Response(), null, ErrorInfo())
 }
+
+typealias SafeCallback<Data, Result, Error> =
+        (Pair<Data, Either<Error, Result>>) -> Unit
+
+
