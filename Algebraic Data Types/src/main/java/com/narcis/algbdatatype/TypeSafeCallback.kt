@@ -22,3 +22,7 @@ fun runAsyncSafe(callback: SafeCallback<Response, Info, ErrorInfo>) {
     callback(Response() to Right(Info()))
     callback(Response() to Left(ErrorInfo()))
 }
+
+typealias NothingType<A> = Either<Nothing, A>
+
+typealias NothingPair<A> = Pair<A, Nothing>
