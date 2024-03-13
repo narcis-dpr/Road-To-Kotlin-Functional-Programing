@@ -22,3 +22,8 @@ val isEvenInt = ::isEven compose ::booleanToInt
 
 typealias NothingTriage = Pair<Nothing, Triage>
 
+data class Sctruct(
+    val enabled: Boolean,
+    val triage: Triage,
+    val value: Byte
+)
