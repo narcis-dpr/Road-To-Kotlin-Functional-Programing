@@ -17,4 +17,8 @@ fun runAsync(callback: Callback<Response, Info, ErrorInfo>) {
 typealias SafeCallback<Data, Result, Error> =
         (Pair<Data, Either<Error, Result>>) -> Unit
 
-
+// the only values that you can have :
+fun runAsyncSafe(callback: SafeCallback<Response, Info, ErrorInfo>) {
+    callback(Response() to Right(Info()))
+    callback(Response() to Left(ErrorInfo()))
+}
