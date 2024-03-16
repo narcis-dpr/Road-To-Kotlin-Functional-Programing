@@ -21,9 +21,14 @@ data class FCons<A>(
     val tail: FList<A> = Nil
 ) : FList<A>
 
+fun FList<Int>.sum(): Int = when(this) {
+    is FCons -> head + tail.sum()
+    Nil -> 0
+}
 
 fun main() {
     // test list :
     FCons(1, FCons(2, FCons(3, FCons(4, FCons(5, Nil)))))
+
 
 }
