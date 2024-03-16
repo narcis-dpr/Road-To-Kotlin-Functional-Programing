@@ -8,3 +8,5 @@ fun <A, B, C> Fun2<A, B, C>.curry(): (A) -> (B) -> C = { a: A ->
 
     }
 }
+
+
