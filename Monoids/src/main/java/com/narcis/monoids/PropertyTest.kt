@@ -1,5 +1,6 @@
 package com.narcis.monoids
 
+import android.content.pm.PackageManager.Property
 import com.google.common.truth.Truth
 import org.junit.Test
 import kotlin.random.Random
@@ -16,6 +17,7 @@ object IntGenerator: Generator<Int> {
     }
 
 }
+
 class PropertyTest {
     @Test
     fun sum_test_using_predefined_values() {
