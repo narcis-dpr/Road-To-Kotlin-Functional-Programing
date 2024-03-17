@@ -6,6 +6,16 @@ import kotlin.random.Random
 
 fun sum(a: Int, b: Int): Int = a + b
 
+fun interface Generator<T> {
+    fun generator(n: Int): List<T>
+}
+
+object IntGenerator: Generator<Int> {
+    override fun generator(n: Int) = List(n) {
+        Random.nextInt()
+    }
+
+}
 class PropertyTest {
     @Test
     fun sum_test_using_predefined_values() {
