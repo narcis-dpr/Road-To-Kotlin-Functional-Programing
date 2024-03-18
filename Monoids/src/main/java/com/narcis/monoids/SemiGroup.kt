@@ -1,5 +1,8 @@
 package com.narcis.monoids
 
+interface Semigroup<T> {
+    val combine: T.(T) -> T
+}
 fun <T> mergeAndCombine(
     listA: List<T>,
     listB: List<T>,
@@ -24,3 +27,4 @@ fun <T> mergeAndCombine(
     }
     return result
 }
+
