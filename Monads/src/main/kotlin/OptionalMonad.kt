@@ -1,3 +1,4 @@
+import kotlin.math.sqrt
 
 
 fun strToInt(str: String): Int = str.toInt()
@@ -8,9 +9,13 @@ fun strToInt2(str: String): Optional<Int> = try {
     None
 }
 
+fun root(number: Int): Optional<Double> =
+    if (number < 0) None else Optional.lift(sqrt(number.toDouble()))
+
 fun main() {
     strToInt("123") pipe ::println
     strToInt("onetwothree") pipe ::println // since the strToInt is partial it will not work on this
+    val strToRoot = ::strToInt
 }
 
 
