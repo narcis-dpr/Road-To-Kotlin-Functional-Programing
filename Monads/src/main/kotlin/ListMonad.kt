@@ -22,6 +22,8 @@ fun main() {
     val fished = countList listFish intToChars
     fished(3) pipe ::println
 
+    countList(3).flatMap(intToChars) pipe ::println
+
 }
 
 infix fun <A,B> A.pipe(f: Fun<A, B>): B = f(this)
