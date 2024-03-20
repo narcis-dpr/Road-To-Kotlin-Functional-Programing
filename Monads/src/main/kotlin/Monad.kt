@@ -14,3 +14,8 @@ infix fun <B, C> M<B>.bind(
 ): M<C> {
     TODO()
 }
+
+interface Monad<T> {
+    fun lift(value: T): Monad<T>
+    fun <B> bind(g: Fun<T, M<B>>): Monad<B>
+}
