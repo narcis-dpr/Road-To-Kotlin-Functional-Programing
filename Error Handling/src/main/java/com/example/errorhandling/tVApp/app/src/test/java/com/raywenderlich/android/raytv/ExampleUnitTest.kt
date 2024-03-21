@@ -1,4 +1,4 @@
-package com.raywenderlich.android.raytv
+package com.example.errorhandling.tVApp.app.src.test.java.com.raywenderlich.android.raytv
 
 import org.junit.Test
 

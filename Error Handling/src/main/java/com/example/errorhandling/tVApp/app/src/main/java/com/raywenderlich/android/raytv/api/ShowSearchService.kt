@@ -4,6 +4,8 @@ import com.example.errorhandling.tVApp.app.src.main.java.com.raywenderlich.andro
 import com.example.errorhandling.tVApp.app.src.main.java.com.raywenderlich.android.raytv.api.tools.parsers.TvShowParser
 import com.example.errorhandling.tVApp.app.src.main.java.com.raywenderlich.android.raytv.model.ScoredShow
 import com.example.errorhandling.tVApp.app.src.main.java.com.raywenderlich.android.raytv.model.ShowDetail
+import com.raywenderlich.fp.lib.Optional
+import com.raywenderlich.fp.lib.flatMap
 import com.raywenderlich.fp.result.flatMap
 import kotlinx.serialization.SerializationException
 import java.io.IOException
@@ -44,3 +46,19 @@ fun fetchAndParseTvShowResult(query: String) =
 fun fetchAndParseTvShowDetailResult(showId: Int) =
   fetchTvShowDetailResult(showId)
     .flatMap(::parseTvShowDetailResult)
+
+fun fetchTvShowOptional(query: String): Optional<String> = try {
+    Optional.lift(TvShowFetcher.fetch(query))
+} catch (ioe: IOException) {
+  Optional.empty()
+}
+
+fun parseTvShowString(json: String): Optional<List<ScoredShow>> {
+  return try {
+    Optional.lift(TvShowParser.parse(json))
+  } catch (e: Exception) {
+    Optional.empty()
+  }
+}
+
+fun fetchAndParseTvShow(query: String) = fetchTvShowOptional(query).flatMap(::parseTvShowString)
