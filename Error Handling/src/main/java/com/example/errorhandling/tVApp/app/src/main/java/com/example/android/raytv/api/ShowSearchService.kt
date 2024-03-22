@@ -1,14 +1,12 @@
 package com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.api
 
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.api.tools.fetchers.TvShowFetcher
-import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.api.tools.parsers.TvShowParser
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.model.ScoredShow
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.model.ShowDetail
 import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.Either
 import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.Optional
 import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.flatMap
 import com.raywenderlich.fp.result.flatMap
-import kotlinx.serialization.SerializationException
 import java.io.IOException
 
 /** Invokes the fetcher returning an Result<T> */
@@ -22,7 +20,7 @@ fun fetchTvShowResult(query: String): Result<String> = try {
 fun parseTvShowResult(json: String): Result<List<ScoredShow>> =
     try {
         Result.success(TvShowParser.parse(json /* +"sabotage" */))
-    } catch (e: SerializationException) {
+    } catch (e: Exception) {
         Result.failure(e)
     }
 
@@ -35,7 +33,7 @@ fun fetchTvShowDetailResult(showId: Int): Result<String> = try {
 fun parseTvShowDetailResult(json: String): Result<ShowDetail> =
     try {
         Result.success(TvShowParser.parseDetail(json))
-    } catch (e: SerializationException) {
+    } catch (e: Exception) {
         Result.failure(e)
     }
 

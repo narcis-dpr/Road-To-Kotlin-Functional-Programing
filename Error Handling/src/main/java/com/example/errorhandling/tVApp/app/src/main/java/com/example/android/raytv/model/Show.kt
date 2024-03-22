@@ -2,11 +2,15 @@
 
 package com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.model
 
+import kotlinx.serialization.Serializable
+
 @Serializable
 data class ScoredShow(
   val score: Double,
   val show: Show
-)
+) {
+  companion object
+}
 
 @Serializable()
 data class Show(

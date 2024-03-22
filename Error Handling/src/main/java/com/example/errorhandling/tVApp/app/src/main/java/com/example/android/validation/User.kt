@@ -3,6 +3,8 @@ package com.example.errorhandling.tVApp.app.src.main.java.com.example.android.va
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.Error
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.ResultAp
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.Success
+import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.ap
+import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.curry
 
 data class User(
     val id: Int,
@@ -22,4 +24,12 @@ fun validateEmail(email: String): ResultAp<ValidationException, String> = if (em
     Success(email)
 } else {
     Error(ValidationException("Invalid email"))
+}
+
+fun main() {
+    val userBuilder = ::User.curry()
+    val userApplicative = ResultAp.success(userBuilder)
+    val idAp = ResultAp.success(1)
+    validateEmail("max@maxcaril.it")
+        .ap(validateName("").ap(idAp.ap(userApplicative)))
 }

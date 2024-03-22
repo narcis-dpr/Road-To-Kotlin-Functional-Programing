@@ -2,7 +2,7 @@
 package com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.api.tools.parsers
 
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.model.ScoredShow
-import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.model.ShowDetail
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 
@@ -16,8 +16,8 @@ object TvShowParser {
   /** Parses the json in input */
   fun parse(json: String): List<ScoredShow> =
     jsonConfig.decodeFromString<List<ScoredShow>>(ListSerializer(ScoredShow.serializer()), json)
+}
 
-  /** Parses the json in input */
-  fun parseDetail(json: String): ShowDetail =
-    jsonConfig.decodeFromString<ShowDetail>(ShowDetail.serializer(), json)
+private fun ScoredShow.Companion.serializer(): KSerializer<ScoredShow> {
+  TODO("Not yet implemented")
 }
