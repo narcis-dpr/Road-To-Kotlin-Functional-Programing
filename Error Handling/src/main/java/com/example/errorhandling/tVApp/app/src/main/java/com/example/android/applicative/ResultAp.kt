@@ -27,5 +27,5 @@ fun <E : Throwable, T, R> ResultAp<E, T>.ap(fn: ResultAp<E, (T) -> R>) : ResultA
         is Success -> Error(fn.error)
         is Error -> Error(this.error)
     }
-//    is Success -> <(T) -> R> -> successMap(fn.value)
+    is Success<(T) -> R> -> successMap(fn.value)
 }
