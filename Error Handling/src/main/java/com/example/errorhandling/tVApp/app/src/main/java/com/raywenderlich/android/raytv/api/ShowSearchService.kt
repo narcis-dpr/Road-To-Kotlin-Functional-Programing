@@ -76,3 +76,7 @@ fun parseTvShowEither(json: String): Either<Exception, List<ScoredShow>> = try {
 } catch (e: Exception) {
     Either.left(e)
 }
+
+fun fetchAndParseTvShowEither(query: String) =
+    fetchTvShowEither(query)
+        .flatMap(::parseTvShowEither)
