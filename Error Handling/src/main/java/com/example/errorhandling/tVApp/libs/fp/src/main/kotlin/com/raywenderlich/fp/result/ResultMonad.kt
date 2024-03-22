@@ -30,7 +30,7 @@
 
 package com.raywenderlich.fp.result
 
-import com.raywenderlich.fp.lib.Fun
+import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.Fun
 
 infix fun <A, B, C> Fun<A, Result<B>>.fish(
   g: Fun<B, Result<C>>
