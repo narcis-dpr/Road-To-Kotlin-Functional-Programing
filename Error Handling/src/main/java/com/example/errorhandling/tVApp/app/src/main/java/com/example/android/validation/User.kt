@@ -28,12 +28,20 @@ fun validateEmail(email: String): ResultAp<ValidationException, String> = if (em
     Error(ValidationException("Invalid email"))
 }
 
+infix fun <E: Throwable, A, B> ResultAp<E, (A) -> B>.appl(a: ResultAp<E, A>) = a.ap(this)
 fun main() {
     val userBuilder = ::User.curry()
     val userApplicative = ResultAp.success(userBuilder)
     val idAp = ResultAp.success(1)
-    validateEmail("max@maxcaril.it")
-        .ap(validateName("").ap(idAp.ap(userApplicative)))
-        .errorMap { println("Error $it"); it}
-        .successMap { println("Success $it") }
+//    validateEmail("max@maxcaril.it")
+//        .ap(validateName("").ap(idAp.ap(userApplicative)))
+//        .errorMap { println("Error $it"); it}
+//        .successMap { println("Success $it") }
+
+    // refactor above with validateEmail infix :
+
+    (userApplicative appl idAp appl validateName("narcis") appl
+            validateEmail("max@gmail.com"))
+                .errorMap { println("Error $it"); it }
+                .successMap { println("success $it") }
 }
