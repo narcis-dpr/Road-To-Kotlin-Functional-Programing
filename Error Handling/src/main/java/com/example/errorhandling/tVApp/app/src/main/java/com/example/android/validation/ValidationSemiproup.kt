@@ -11,7 +11,7 @@ interface Semigroup<T> {
 
 data class ValidationExceptionComposite(
     private val errors: List<ValidationException>
-): Exception(), Semigroup<ValidationExceptionComposite> {
+) : Exception(), Semigroup<ValidationExceptionComposite> {
     override fun plus(rh: ValidationExceptionComposite): ValidationExceptionComposite =
         ValidationExceptionComposite(this.errors + rh.errors)
 
@@ -21,12 +21,30 @@ data class ValidationExceptionComposite(
 
 }
 
+infix fun <E, T, R> ResultAp<E, (T) -> R>.applsg(a: ResultAp<E, T>) where E : Throwable, E : Semigroup<E> =
+    a.apsg(this)
+
 fun <E, T, R> ResultAp<E, T>.apsg(
     fn: ResultAp<E, (T) -> R>
-): ResultAp<E, R> where E: Throwable, E: Semigroup<E> = when(fn) {
-    is Error -> when(this) {
+): ResultAp<E, R> where E : Throwable, E : Semigroup<E> = when (fn) {
+    is Error -> when (this) {
         is Error -> Error(this.error + fn.error)
         is Success -> Error(fn.error)
     }
+
     is Success -> successMap(fn.value)
 }
+
+fun validateNameSg(name: String): ResultAp<ValidationExceptionComposite, String> =
+    if (name.length > 4) {
+        Success(name)
+    } else {
+        Error(ValidationExceptionComposite(listOf(ValidationException("Invalid name"))))
+    }
+
+fun validateEmailSg(email: String): ResultAp<ValidationExceptionComposite, String> =
+    if (email.contains("@")) {
+        Success(email)
+    } else {
+        Error(ValidationExceptionComposite(listOf(ValidationException("Invalid email"))))
+    }
