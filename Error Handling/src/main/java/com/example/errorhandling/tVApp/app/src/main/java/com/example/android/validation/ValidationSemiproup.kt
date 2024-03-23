@@ -3,7 +3,9 @@ package com.example.errorhandling.tVApp.app.src.main.java.com.example.android.va
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.Error
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.ResultAp
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.Success
+import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.errorMap
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.successMap
+import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.curry
 
 interface Semigroup<T> {
     operator fun plus(rh: T): T
@@ -48,3 +50,21 @@ fun validateEmailSg(email: String): ResultAp<ValidationExceptionComposite, Strin
     } else {
         Error(ValidationExceptionComposite(listOf(ValidationException("Invalid email"))))
     }
+
+fun main() {
+    val userBuilder = ::User.curry()
+    val userApplicative = ResultAp.success(userBuilder)
+    val idAp = ResultAp.success(1)
+
+    (userApplicative appl
+            idAp appl
+            validateName("") appl
+            validateEmail(""))
+        .errorMap {
+            println("Error: $it"); it
+        }
+        .successMap {
+            println("Success $it")
+        }
+
+}
