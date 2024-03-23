@@ -1,6 +1,7 @@
 package com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.api
 
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.api.tools.fetchers.TvShowFetcher
+import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.api.tools.parsers.TvShowParser
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.model.ScoredShow
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.raytv.model.ShowDetail
 import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.Either
@@ -30,9 +31,9 @@ fun fetchTvShowDetailResult(showId: Int): Result<String> = try {
     Result.failure(ioe)
 }
 
-fun parseTvShowDetailResult(json: String): Result<ShowDetail> =
+fun parseTvShowDetailResult(json: String): Result<ScoredShow> =
     try {
-        Result.success(TvShowParser.parseDetail(json))
+        Result.success(TvShowParser.parse(json)[0])
     } catch (e: Exception) {
         Result.failure(e)
     }
