@@ -1,6 +1,7 @@
 package com.example.errorhandling.tVApp.app.src.main.java.com.example.android.result
 
-import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.Fun
+import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.example.fp.lib.Fun
+import com.raywenderlich.fp.result.flatten
 
 infix fun <A, B, C> Fun<A, Result<B>>.fish(
     g: Fun<B, Result<C>>
@@ -18,3 +19,8 @@ fun <A> Result<Result<A>>.flatten(): Result<A> =
     } else {
         Result.failure(exceptionOrNull()!!)
     }
+
+fun <A> Result<A>.lift(value: A): Result<A> = Result.success(value)
+
+fun <A, B> Result<A>.flatMap(fn: Fun<A, Result<B>>): Result<B> =
+    map(::lift fish fn).flatten()

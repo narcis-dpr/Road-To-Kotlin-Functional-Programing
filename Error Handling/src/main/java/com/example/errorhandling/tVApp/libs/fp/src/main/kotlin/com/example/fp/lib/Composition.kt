@@ -1,5 +1,5 @@
 
-package com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib
+package com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.example.fp.lib
 
 /** Implement composition using g after f notation. */
 inline infix fun <A, B, C> Fun<B, C>.after(crossinline f: Fun<A, B>): Fun<A, C> =

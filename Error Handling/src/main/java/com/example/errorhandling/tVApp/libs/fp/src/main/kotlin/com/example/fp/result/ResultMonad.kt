@@ -30,7 +30,7 @@
 
 package com.raywenderlich.fp.result
 
-import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.Fun
+import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.example.fp.lib.Fun
 
 infix fun <A, B, C> Fun<A, Result<B>>.fish(
   g: Fun<B, Result<C>>
@@ -51,8 +51,9 @@ fun <A> Result<Result<A>>.flatten(): Result<A> =
     Result.failure(exceptionOrNull()!!)
   }
 
-fun <A> Result<A>.lift(value: A): Result<A> =
+fun <A> Result<A>.lift(value: A): Result<A> = // lift is Result::success in a different name
   Result.success(value)
 
 fun <A, B> Result<A>.flatMap(fn: Fun<A, Result<B>>): Result<B> =
   map(::lift fish fn).flatten()
+

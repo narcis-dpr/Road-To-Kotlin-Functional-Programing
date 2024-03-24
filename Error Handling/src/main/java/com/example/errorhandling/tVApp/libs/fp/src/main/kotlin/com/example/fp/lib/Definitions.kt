@@ -1,5 +1,5 @@
 
-package com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib
+package com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.example.fp.lib
 
 /** Any function from A to B */
 typealias Fun<A, B> = (A) -> B

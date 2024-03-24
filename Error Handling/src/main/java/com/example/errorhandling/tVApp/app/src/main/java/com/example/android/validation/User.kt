@@ -6,7 +6,7 @@ import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.app
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.ap
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.errorMap
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.successMap
-import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.curry
+import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.example.fp.lib.curry
 
 data class User(
     val id: Int,

@@ -1,5 +1,5 @@
 
-package com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib
+package com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.example.fp.lib
 
 /** Abstraction of a function with two input parameters */
 typealias Fun2<T1, T2, R> = (T1, T2) -> R

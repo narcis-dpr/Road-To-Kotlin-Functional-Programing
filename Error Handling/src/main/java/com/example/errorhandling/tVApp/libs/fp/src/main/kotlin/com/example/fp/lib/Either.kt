@@ -1,5 +1,5 @@
 
-package com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib
+package com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.example.fp.lib
 
 /** Either<A, B> implementation */
 sealed class Either<out A, out B> {

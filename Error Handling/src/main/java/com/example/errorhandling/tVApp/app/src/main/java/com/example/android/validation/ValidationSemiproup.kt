@@ -5,7 +5,7 @@ import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.app
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.Success
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.errorMap
 import com.example.errorhandling.tVApp.app.src.main.java.com.example.android.applicative.successMap
-import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.raywenderlich.fp.lib.curry
+import com.example.errorhandling.tVApp.libs.fp.src.main.kotlin.com.example.fp.lib.curry
 
 interface Semigroup<T> {
     operator fun plus(rh: T): T
