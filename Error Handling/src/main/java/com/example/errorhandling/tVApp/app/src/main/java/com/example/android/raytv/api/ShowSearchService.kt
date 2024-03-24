@@ -79,3 +79,27 @@ fun fetchAndParseTvShowEither(query: String) =
     fetchTvShowEither(query)
         .flatMap(::parseTvShowEither)
 
+
+fun fetchTvShowResultT(query: String): Result<String> = try {
+    Result.success(TvShowFetcher.fetch(query))
+} catch (ioe: IOException) {
+    Result.failure(ioe)
+}
+
+fun parseTvShowResultT(json: String): Result<List<ScoredShow>> =
+    try {
+        Result.success((TvShowParser.parse(json)))
+    } catch (e: Exception) {
+        Result.failure(e)
+    }
+
+fun fetchAndParseTvShowResultT(query: String) =
+    fetchTvShowResultT(query)
+        .flatMap(::parseTvShowResultT)
+
+
+fun main() {
+    fetchAndParseTvShowResultT("Big Big Bang")
+        .fold(onFailure = { println("Error: $it") },
+            onSuccess = { println("Result is $it") })
+}
