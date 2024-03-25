@@ -15,6 +15,16 @@ data class State<S, T>(
     }
 }
 operator fun <S, T> State<S, T>.invoke(state: S) = st(state)
+
+//fun <S, A, B, C> State<S, A>.zip(
+//    s2: State<S, B>,
+//    combine: (A, B) -> C
+//): State<S, C> = State { s0 ->
+//    val (v1, s1) = this(s0)
+//    val (v2, s2) = s2(v1)
+//
+//    combine(v1, v2) to s2
+//}
 fun main() {
     val prod1 = Product("1", "cheese")
     val prod2 = Product("2", "Bread")
