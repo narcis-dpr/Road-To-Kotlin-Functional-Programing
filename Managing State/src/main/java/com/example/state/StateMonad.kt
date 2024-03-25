@@ -4,3 +4,7 @@ fun <S, A, B> State<S, A>.flatMap(fn: (A) -> State<S, B>): State<S, B> = State {
     val (a, s1) = this(s0)
     fn(s1)(a)
 }
+
+//val assignSkuWithState: (Product) -> State<Int, SkuProduct> = {prod: Product ->
+//    State(curriedAssignedSku(prod)).st
+//}
