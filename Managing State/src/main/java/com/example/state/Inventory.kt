@@ -19,9 +19,17 @@ fun main() {
     val prod2 = Product("2", "Bread")
     val prod3 = Product("3", "Cake")
 
-    SkuProduct(prod1, createSku()) pipe ::println
-    SkuProduct(prod2, createSku()) pipe ::println
-    SkuProduct(prod3, createSku()) pipe ::println
+//    SkuProduct(prod1, createSku()) pipe ::println
+//    SkuProduct(prod2, createSku()) pipe ::println
+//    SkuProduct(prod3, createSku()) pipe ::println
+
+    val state0 = 0
+    val (skuProd1, state1) = curriedAssignedSku(prod1)(state0)
+    skuProd1 pipe ::println
+    val (skuProd2, state2) = curriedAssignedSku(prod2)(state1)
+    skuProd1 pipe ::println
+    val (skuProd3, state3) = curriedAssignedSku(prod3)(state2)
+    skuProd1 pipe ::println
 
 
 
