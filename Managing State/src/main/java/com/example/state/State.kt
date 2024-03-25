@@ -21,5 +21,6 @@ fun main() {
     SkuProduct(prod2, sku2) pipe ::println
     val (state3, sku3) = skuStateTransformer(state2)
     SkuProduct(prod2, sku2) pipe ::println
-
+    // test lift :
+    val initialState = State.lift<Int, Product>(Product("1", "Cheese"))
 }
