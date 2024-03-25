@@ -7,6 +7,12 @@ data class SkuProduct(val product: Product, val sku: String)
 var count = 0
 fun createSku(): String = "RAY-PROD-${String.format("%04d", count++)}"
 
+val assignSku: (Product, Int) -> Pair<SkuProduct, Int> = {product: Product, state ->
+    val newSku = "RAY-PROD-${String.format("%04d", state)}"
+    SkuProduct(product, newSku) to state + 1
+}
+val curriedAssignedSku: (Product) -> (Int) -> Pair<SkuProduct, Int> = assignSku.curry()
+
 // test :
 fun main() {
     val prod1 = Product("1", "cheese")
