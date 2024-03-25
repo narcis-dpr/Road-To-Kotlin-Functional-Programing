@@ -2,10 +2,16 @@ package com.example.state
 
 typealias StateTransformer<S, T> = (S) -> Pair<S, T>
 val skuStateTransformer: StateTransformer<Int, String> = {state ->  state + 1 to "RAY-PROD-${String.format("%04d", state)}" }
-data class State<S, T>(val st: StateTransformer<S, T>) {
+data class State<S, T>(
+    val st: StateTransformer<S, T>
+) {
+
     companion object {
         @JvmStatic
-        fun <S, T> lift(value: T): State<S, T> = State({ state -> state to value })
+        fun <S, T> lift(
+            value: T
+        ): State<S, T> =
+            State({ state -> state to value })
     }
 }
 operator fun <S, T> State<S, T>.invoke(state: S) = st(state)
