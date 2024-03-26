@@ -91,3 +91,15 @@ typealias StateTransformer<S, T> = (S) -> Pair<T, S>
 data class State<S, T>(
     val st: StateTransformer<S, T>
 )
+
+fun <T, S> FList<T>.foldRight(start: S, combineFunc: (T, S) -> S): S = when (this) {
+    is Nil -> start
+    is FCons<T> -> combineFunc(head, tail.foldRight(start, combineFunc))
+}
+fun <T> FList<T>.append(rhs: FList<T>): FList<T> =
+    foldRight(rhs, { item, acc -> FCons(item, acc) })
+fun <T, S> FList<T>.flatMap(fn: Fun<T, FList<S>>): FList<S> = foldRight(
+    FList.empty()
+) { item, acc ->
+    fn(item).append(acc)
+}
