@@ -22,6 +22,13 @@ fun askNameAndPrintGreetings(): (World) -> World = {w0: World ->
     printString("Hello $name! \n")(w2)
 }
 
+fun askNameAndPrintGreetingsT(): WorldT<Unit> =
+    printStringT("whats your name?") myOp {_ ->
+        readNameT myOp {name ->
+            printStringT("Hello $name! \n")
+        }
+    }
+
 val readNameT: WorldT<String> = readName
 
 val printStringT: (String) -> WorldT<Unit> = {str: String ->
