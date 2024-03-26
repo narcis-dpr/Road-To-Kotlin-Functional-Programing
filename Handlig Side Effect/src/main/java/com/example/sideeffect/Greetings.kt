@@ -21,6 +21,15 @@ fun askNameAndPrintGreetings(): (World) -> World = {w0: World ->
     val (name, w2) = readName(w1)
     printString("Hello $name! \n")(w2)
 }
+
+val readNameT: WorldT<String> = readName
+
+val printStringT: (String) -> WorldT<Unit> = {str: String ->
+    {w: World ->
+        Unit to printString(str)(w)
+    }
+}
+
 fun main() {
     print("whats your name?")
     val name = Scanner(System.`in`).nextLine()
