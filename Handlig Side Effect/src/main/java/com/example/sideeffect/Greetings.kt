@@ -47,4 +47,6 @@ fun main() {
 
     // this way of composing functions is called monad comprehension :
     askNameAndPrintGreetings()(World) pipe ::println
+
+    askNameAndPrintGreetingsT()(World) pipe ::println
 }
