@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/Managing State" />
             <option value="$PROJECT_DIR$/Monads" />
             <option value="$PROJECT_DIR$/Monoids" />
+            <option value="$PROJECT_DIR$/Sequences and Flow" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/fundamentals" />
           </set>
