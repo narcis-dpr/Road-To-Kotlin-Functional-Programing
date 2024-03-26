@@ -77,3 +77,8 @@ fun <T> FList<T>.forEach(fn: (T) -> Unit): Unit = match(
         tail.forEach(fn)
     }
 )
+
+inline infix fun <A, B, C> Fun<A, B>.compose(crossinline g: Fun<B, C>): Fun<A, C> =
+    { a: A ->
+        g(this(a))
+    }
