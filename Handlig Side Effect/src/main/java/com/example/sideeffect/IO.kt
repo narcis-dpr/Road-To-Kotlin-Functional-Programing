@@ -12,3 +12,8 @@ data class IO<T>(val wt: WorldT<T>) {
 }
 
 operator fun <T> IO<T>.invoke(w: World) = wt(w)
+
+fun <A, B> IO<A>.map (fn: Fun<A, B>): IO<B> = IO {w0 ->
+    val (a, w1) = this(w0)
+    fn(a) to w1
+}
