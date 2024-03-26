@@ -15,7 +15,7 @@ val safeReadNameError: (World) -> Pair<Result<String>, World> = {w: World ->
     ) to World
 }
 
-val safeReadNameT: WorldT<Result<String>> = safeReadName
+val safeReadNameT: WorldT<Result<String>> =  safeReadNameError //safeReadName
 
 val safePrintStringT: (String) -> WorldT<Result<Unit>> = {str: String ->
     {w: World ->
