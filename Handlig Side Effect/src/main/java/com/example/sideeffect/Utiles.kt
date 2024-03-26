@@ -86,3 +86,8 @@ inline infix fun <A, B, C> Fun<A, B>.compose(crossinline g: Fun<B, C>): Fun<A, C
 fun <T1, T2, R> ((T1) -> (T2) -> R).uncurryP(): Fun<Pair<T1, T2>, R> = {p: Pair<T1, T2> ->
     this(p.first)(p.second)
 }
+
+typealias StateTransformer<S, T> = (S) -> Pair<T, S>
+data class State<S, T>(
+    val st: StateTransformer<S, T>
+)
