@@ -27,3 +27,8 @@ fun <T, R> IO<T>.ap(
 }
 
 infix fun <A, B> IO<(A) -> B>.appl(a: IO<A>) = a.ap(this)
+
+fun <A, B> IO<A>.flatMap(fn: (A) -> IO<B>): IO<B> = IO {w0: World ->
+    val (a, w1) = this(w0)
+    fn(a)(w1)
+}
