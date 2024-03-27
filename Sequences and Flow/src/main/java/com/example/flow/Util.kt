@@ -11,3 +11,7 @@ fun <A, B> ((A) -> B).logged(str: String): (A) -> B = {
 val double = { a: Int -> 2 * a }
 
 val filterOdd = { a: Int -> a % 2 == 0 }
+
+fun interface Generator<T> {
+  fun generate(n: Int): List<T>
+}
