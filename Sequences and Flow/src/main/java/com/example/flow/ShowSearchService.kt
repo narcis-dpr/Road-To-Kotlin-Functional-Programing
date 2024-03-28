@@ -1,6 +1,7 @@
 package com.example.flow
 
 import com.example.flow.tools.fetchers.TvShowFetcher
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.withContext
 import java.io.IOException
 import kotlin.coroutines.CoroutineContext
@@ -23,5 +24,6 @@ val fetchSuspendResult: (String) -> SuspendableStateResult<CoroutineContext, Str
 }
 
 suspend fun searchTvShow(ctx: CoroutineContext) = withContext(ctx) {
-    inputStringFlow("search")
+    inputStringFlow("search your show: ")
+
 }
