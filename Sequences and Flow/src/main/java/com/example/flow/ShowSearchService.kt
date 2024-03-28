@@ -15,3 +15,13 @@ suspend fun fetchTvShowResult(
         Result.failure(ioe)
     }
 }
+
+val fetchSuspendResult: (String) -> SuspendableStateResult<CoroutineContext, String> = {query ->
+    SuspendableStateResult { ctx: CoroutineContext ->
+        ctx to fetchTvShowResult(ctx, query)
+    }
+}
+
+suspend fun searchTvShow(ctx: CoroutineContext) = withContext(ctx) {
+    inputStringFlow("search")
+}
