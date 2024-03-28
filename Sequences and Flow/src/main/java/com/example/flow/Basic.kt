@@ -4,8 +4,8 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.CoroutineContext
 
 fun doSomeWork(name: String): Int = 10
-suspend fun doSomeBgWork(ctx: CoroutineContext, name: String): Int = withContext(ctx) {
-    doSomeWork(name)
+suspend fun doSomeBgWork(ctx: CoroutineContext, name: String): Pair<CoroutineContext, Int> = withContext(ctx) {
+    ctx to doSomeWork(name)
 }
 
 fun main() {
