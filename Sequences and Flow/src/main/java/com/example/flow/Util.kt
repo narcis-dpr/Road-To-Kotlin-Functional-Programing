@@ -117,3 +117,4 @@ fun <T, S> FList<T>.flatMap(fn: Fun<T, FList<S>>): FList<S> = foldRight(
 ) { item, acc ->
   fn(item).append(acc)
 }
+
