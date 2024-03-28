@@ -45,4 +45,5 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("junit:junit:4.13.2")
     testImplementation("com.google.truth:truth:1.1.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
 }
