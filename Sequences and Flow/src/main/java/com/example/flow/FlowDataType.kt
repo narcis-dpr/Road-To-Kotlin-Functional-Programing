@@ -1,5 +1,6 @@
 package com.example.flow
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
@@ -20,11 +21,23 @@ fun inputStringFlow(question: String = "") = flow {
     scanner.close()
 }
 
+fun <A, B> Flow<A>.ap(fn: Flow<(A) -> B>): Flow<B> = flow {
+    collect { a ->
+        fn.collect { f ->
+            emit(f(a))
+        }
+    }
+}
+
+infix fun <A, B> Flow<(A) -> B>.appl(
+    a: Flow<A>
+) = a.ap(this)
+
 fun main() {
     val strLengthFlow = inputStringFlow("Insert a word: ").map { str -> str to str.length }
 
     runBlocking {
-        strLengthFlow.collect {strInfo ->
+        strLengthFlow.collect { strInfo ->
             println("${strInfo.first} has length ${strInfo.second}")
         }
     }
