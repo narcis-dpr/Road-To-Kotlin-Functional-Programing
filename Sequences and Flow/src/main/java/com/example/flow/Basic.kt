@@ -9,5 +9,15 @@ suspend fun doSomeBgWork(ctx: CoroutineContext, name: String): Int = withContext
 }
 
 fun main() {
-    doSomeBgWork.curry()
+    ::doSomeBgWork.curry()
+}
+
+typealias SuspendFun<A, B> = suspend (A) -> B
+typealias SuspendFun2<A, B, C> = suspend (A, B) -> C
+typealias SuspendChain2<A, B, C> = suspend (A) -> suspend (B) -> C
+
+fun <A, B, C> SuspendFun2<A, B, C>.curry(): SuspendChain2<A, B, C> = {a: A ->
+    {b: B ->
+        this(a, b)
+    }
 }
